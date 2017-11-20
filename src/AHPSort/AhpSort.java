@@ -33,12 +33,10 @@ class AhpSort {
 
         double[] criteriaWeights = normalizeVector(calculateMatrixWeightsEigenvalue(criteria));
         ArrayList<ArrayList<double[]>> alternativesWeights = new ArrayList<>();
-        int i = 0;
+
         for (double[] alternative : alternatives) {
             //comparisonMatrix
             ArrayList<double[]> alternativeWeights = new ArrayList<>();
-
-
 
             for (double value : alternative) {
                 double[][] comparisonMatrix = new double[2][2];
@@ -46,10 +44,6 @@ class AhpSort {
                 comparisonMatrix[0][1] = value;
                 comparisonMatrix[1][0] = 1 / value;
                 comparisonMatrix[1][1] = 1;
-                if (i == 4) {
-                    String a = "h";
-                }
-                ++i;
                 alternativeWeights.add(normalizeVector(calculateMatrixWeightsEigenvalue(comparisonMatrix)));
             }
             alternativesWeights.add(alternativeWeights);
@@ -87,7 +81,6 @@ class AhpSort {
     private double[] calculateMatrixWeightsEigenvalue(double[][] matrix) {
 
         RealMatrix realMatrix = MatrixUtils.createRealMatrix(matrix);
-
 
         EigenDecomposition decomposition = new EigenDecomposition(realMatrix);
         double[] eigenValues = decomposition.getRealEigenvalues();
@@ -135,7 +128,6 @@ class AhpSort {
         double[] randomIndex = new double[] {0.58, 0.9, 1.12, 1.24, 1.32, 1.41, 1.45, 1.49};
 
         RealMatrix realMatrix = MatrixUtils.createRealMatrix(criteria);
-
 
         EigenDecomposition decomposition = new EigenDecomposition(realMatrix);
         double[] eigenValues = decomposition.getRealEigenvalues();
